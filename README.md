@@ -1,6 +1,8 @@
 # PHPconvertDMSToDecimal
 A PHP function that will convert a coordinate in DMS (degrees / minutes / seconds) to decimal degrees.
 
+Strictly speaking it will also accept decimal degrees.  I wanted a function that could parse any latitude or longitude that a user may input.
+
 Test cases are included, and the output should look like this:
 
 ```
