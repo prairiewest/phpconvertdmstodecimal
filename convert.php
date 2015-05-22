@@ -14,8 +14,8 @@ function convertDMSToDecimal($latlng) {
     // Determine if there are extra periods in the input string
     $num_periods = substr_count($latlng, '.');
     if ($num_periods > 1) {
-        $temp = trim(preg_replace('/\./', ' ', $latlng, $num_periods - 1)); // replace all but last period with delimiter
-        $temp = preg_replace('/[a-zA-Z]/','',$temp); // when counting chunks we only want numbers
+        $temp = preg_replace('/\./', ' ', $latlng, $num_periods - 1); // replace all but last period with delimiter
+        $temp = trim(preg_replace('/[a-zA-Z]/','',$temp)); // when counting chunks we only want numbers
         $chunk_count = count(explode(" ",$temp));
         if ($chunk_count > 2) {
             $latlng = $temp; // remove last period
