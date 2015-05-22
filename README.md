@@ -3,6 +3,7 @@ A PHP function that will convert a coordinate in DMS (degrees / minutes / second
 
 Test cases are included, and the output should look like this:
 
+```
  N 53 03 47.7   =>      53.06325
  s53 03 47.7    =>      -53.06325
  E53  03  47.7  =>      53.06325
@@ -49,3 +50,4 @@ N44.35.26       =>      44.590555555556
  44.35.26s      =>      -44.590555555556
 -44 35 26       =>      -44.590555555556
 44º 35' 26"w    =>      -44.590555555556
+```
