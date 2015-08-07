@@ -42,7 +42,7 @@ function convertDMSToDecimal($latlng) {
                 $direction = -1;
         }
         // DMS with the direction at the end of the string
-        if (preg_match("/^(-?\d{1,3})\s+(\d{1,3})\s+(\d+(?:\.\d+)?)\s*([nsewNSEW]?)$/",$latlng,$matches)) {
+        elseif (preg_match("/^(-?\d{1,3})\s+(\d{1,3})\s+(\d+(?:\.\d+)?)\s*([nsewNSEW]?)$/",$latlng,$matches)) {
             $valid = true;
             $degrees = intval($matches[1]);
             $minutes = intval($matches[2]);
@@ -57,20 +57,20 @@ function convertDMSToDecimal($latlng) {
             $decimal_degrees = ($degrees + ($minutes / 60) + ($seconds / 3600)) * $direction;
         } else {
             // Decimal degrees with a direction at the start of the string
-            if (preg_match("/^(-?\d+(?:\.\d+)?)\s*([nsewNSEW]?)$/",$latlng,$matches)) {
+            if (preg_match("/^([nsewNSEW]?)\s*(\d+(?:\.\d+)?)$/",$latlng,$matches)) {
+                $valid = true;
+                if (strtoupper($matches[1]) == "S" || strtoupper($matches[1]) == "W")
+                    $direction = -1;
+                $decimal_degrees = $matches[2] * $direction;
+            }
+            // Decimal degrees with a direction at the end of the string
+            elseif (preg_match("/^(-?\d+(?:\.\d+)?)\s*([nsewNSEW]?)$/",$latlng,$matches)) {
                 $valid = true;
                 if (strtoupper($matches[2]) == "S" || strtoupper($matches[2]) == "W" || $degrees < 0) {
                     $direction = -1;
                     $degrees = abs($degrees);
                 }
                 $decimal_degrees = $matches[1] * $direction;
-            }
-            // Decimal degrees with a direction at the end of the string
-            if (preg_match("/^([nsewNSEW]?)\s*(\d+(?:\.\d+)?)$/",$latlng,$matches)) {
-                $valid = true;
-                if (strtoupper($matches[1]) == "S" || strtoupper($matches[1]) == "W")
-                    $direction = -1;
-                $decimal_degrees = $matches[2] * $direction;
             }
         }
     }
