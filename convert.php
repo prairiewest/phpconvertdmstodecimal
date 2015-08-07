@@ -18,7 +18,7 @@ function convertDMSToDecimal($latlng) {
         $temp = trim(preg_replace('/[a-zA-Z]/','',$temp)); // when counting chunks we only want numbers
         $chunk_count = count(explode(" ",$temp));
         if ($chunk_count > 2) {
-            $latlng = $temp; // remove last period
+            $latlng = preg_replace('/\./', ' ', $latlng, $num_periods - 1); // remove last period
         } else {
             $latlng = str_replace("."," ",$latlng); // remove all periods, not enough chunks left by keeping last one
         }
