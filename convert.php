@@ -26,11 +26,13 @@ function convertDMSToDecimal($latlng) {
     
     // Remove unneeded characters
     $latlng = trim($latlng);
-    $latlng = str_replace("º","",$latlng);
-    $latlng = str_replace("'","",$latlng);
-    $latlng = str_replace("\"","",$latlng);
+    $latlng = str_replace("º"," ",$latlng);
+    $latlng = str_replace("°"," ",$latlng);
+    $latlng = str_replace("'"," ",$latlng);
+    $latlng = str_replace("\""," ",$latlng);
+    $latlng = str_replace("  "," ",$latlng);
     $latlng = substr($latlng,0,1) . str_replace('-', ' ', substr($latlng,1)); // remove all but first dash
-    
+
     if ($latlng != "") {
     	// DMS with the direction at the start of the string
         if (preg_match("/^([nsewNSEW]?)\s*(\d{1,3})\s+(\d{1,3})\s+(\d+\.?\d*)$/",$latlng,$matches)) {
@@ -93,7 +95,7 @@ $test_cases = array(
     " 53--03--47.7N "," s-53-03-47.7 "," E53-03-47.7","53.06325w","53.06325","53.06325 s",
     "53.06325 N","-53.06325","53 03 47.7","-53 03 47.7","53 03 47.7W","-53º 03' 47.7\"",
     "53º 03' 47.7\"","53º 03' 47.7\"s"," N 144 35 26"," s144 35 26","E 144  35 26","144 35 26w",
-    "N144.35.26"," 144.35.26s","-144 35 26","144º 35' 26\"w"
+    "N144.35.26"," 144.35.26s","-144 35 26","144º 35' 26\"w","45°43'51''N","009°44'23''E"
 );
 
 foreach ($test_cases as $t) {
