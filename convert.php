@@ -82,3 +82,5 @@ function convertDMSToDecimal($latlng) {
         return false;
     }
 }
+
+?>

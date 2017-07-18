@@ -2,9 +2,6 @@
 
 require_once __DIR__."/convert.php";
 
-// Code below here is not needed, only for testing the above
-
-
 $test_cases = array(
     " N 53 03 47.7 "," s53 03 47.7"," E53  03  47.7"," w53 03 47.7 ","  53 03 47.7 n"," 53 03 47.7S",
     " 53  03  47.7e "," W 53 03 47.7 "," N53 03 47.7"," s.53.03.47.7 "," E53.03.47.7"," w53..03..47.7",
@@ -20,3 +17,4 @@ foreach ($test_cases as $t) {
     echo $t . "\t=>\t" . convertDMSToDecimal($t) . "\n";
 }
 
+?>
