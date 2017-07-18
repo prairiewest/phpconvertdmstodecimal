@@ -1,0 +1,15 @@
+{
+    "name": "prairiewest/PHPconvertDMSToDecimal",
+    "description": " Convert degrees / minutes / seconds to decimal degrees in PHP ",
+    "authors": [
+        {
+            "name": "Todd Trann"
+        }
+    ],
+    "autoload": {
+        "files": [
+          "convert.php"
+        ]
+    }
+}
+
