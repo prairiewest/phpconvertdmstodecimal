@@ -26,8 +26,8 @@ function convertDMSToDecimal($latlng) {
     
     // Remove unneeded characters
     $latlng = trim($latlng);
-    $latlng = str_replace("º"," ",$latlng);
-    $latlng = str_replace("°"," ",$latlng);
+    $latlng = str_replace("Âº"," ",$latlng);
+    $latlng = str_replace("Â°"," ",$latlng);
     $latlng = str_replace("'"," ",$latlng);
     $latlng = str_replace("\""," ",$latlng);
     $latlng = str_replace("  "," ",$latlng);
@@ -35,7 +35,7 @@ function convertDMSToDecimal($latlng) {
 
     if ($latlng != "") {
     	// DMS with the direction at the start of the string
-        if (preg_match("/^([nsewNSEW]?)\s*(\d{1,3})\s+(\d{1,3})\s+(\d+\.?\d*)$/",$latlng,$matches)) {
+        if (preg_match("/^([nsewoNSEWO]?)\s*(\d{1,3})\s+(\d{1,3})\s*(\d*\.?\d*)$/",$latlng,$matches)) {
             $valid = true;
             $degrees = intval($matches[2]);
             $minutes = intval($matches[3]);
@@ -44,7 +44,7 @@ function convertDMSToDecimal($latlng) {
                 $direction = -1;
         }
         // DMS with the direction at the end of the string
-        elseif (preg_match("/^(-?\d{1,3})\s+(\d{1,3})\s+(\d+(?:\.\d+)?)\s*([nsewNSEW]?)$/",$latlng,$matches)) {
+        elseif (preg_match("/^(-?\d{1,3})\s+(\d{1,3})\s*(\d*(?:\.\d*)?)\s*([nsewoNSEWO]?)$/",$latlng,$matches)) {
             $valid = true;
             $degrees = intval($matches[1]);
             $minutes = intval($matches[2]);
