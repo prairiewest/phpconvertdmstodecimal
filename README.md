@@ -3,57 +3,50 @@ A PHP function that will convert a coordinate in DMS (degrees / minutes / second
 
 Strictly speaking it will also accept decimal degrees.  I wanted a function that could parse any latitude or longitude that a user may input.
 
-Test cases are included, and the output should look like this:
+The code is compatible with any PHP version above 5.0.
+
+## Installation guide
+
+### If your project doesn't use composer
+Just do a _require_once()_ of the _convert.php_ file.
+
+### If your project uses composer
+
+First you need to add this repository in your _composer.json_ file. For instance:
+```
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/prairiewest/PHPconvertDMSToDecimal.git"
+    }
+]
+```
+
+Then you have to do a 
 
 ```
- N 53 03 47.7   =>      53.06325
- s53 03 47.7    =>      -53.06325
- E53  03  47.7  =>      53.06325
- w53 03 47.7    =>      -53.06325
-  53 03 47.7 n  =>      53.06325
- 53 03 47.7S    =>      -53.06325
- 53  03  47.7e  =>      53.06325
- W 53 03 47.7   =>      -53.06325
- N53 03 47.7    =>      53.06325
- s.53.03.47.7   =>      53.06325
- E53.03.47.7    =>      53.06325
- w53..03..47.7  =>      53.06325
- n53.03.47.7    =>      53.06325
-  53.03.47.7 S  =>      53.06325
- 53.03.47.7e    =>      53.06325
- 53..03..47.7W  =>      53.06325
- N.53.03.47.7   =>      53.06325
- s53.03.47.7    =>      53.06325
- E-53-03-47.7   =>      53.06325
- w53-03-47.7    =>      -53.06325
- n53--03--47.7  =>      53.06325
- S53-03-47.7    =>      -53.06325
-  53-03-47.7 e  =>      53.06325
- 53-03-47.7W    =>      -53.06325
- 53--03--47.7N  =>      53.06325
- s-53-03-47.7   =>      -53.06325
- E53-03-47.7    =>      53.06325
-53.06325w       =>      -53.06325
-53.06325        =>      53.06325
-53.06325 s      =>      -53.06325
-53.06325 N      =>      53.06325
--53.06325       =>      -53.06325
-53 03 47.7      =>      53.06325
--53 03 47.7     =>      -53.06325
-53 03 47.7W     =>      -53.06325
--53º 03' 47.7"  =>      -53.06325
-53º 03' 47.7"   =>      53.06325
-53º 03' 47.7"s  =>      -53.06325
- N 144 35 26    =>      144.59055555556
- s144 35 26     =>      -144.59055555556
-E 144  35 26    =>      144.59055555556
-144 35 26w      =>      -144.59055555556
-N144.35.26      =>      144.59055555556
- 144.35.26s     =>      -144.59055555556
--144 35 26      =>      -144.59055555556
-144º 35' 26"w   =>      -144.59055555556
-45°43'51''N     =>      45.730833333333
-009°44'23''E    =>      9.7397222222222
-50° 5' N        =>      50.083333333333
--8°56'O         =>      -8.9333333333333
+composer require prairiewest/phpconvertdmstodecimal
+```
+
+Finally, in your code, you juste have to call the library directly, or, if your project
+uses namespaces, you need to include it in your class:
+
+```
+use function convertDMSToDecimal;
+
+// or
+
+use DmsToDecimalConverter
+```
+
+## Utilization
+You can either use it as an object or directly:
+
+```
+// Directly:
+convertDMSToDecimal($coords);
+
+// As an object:
+$converter = new DmsToDecimalConverter();
+$outputValue = $converter->convert($entryValue);
 ```

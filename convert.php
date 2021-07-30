@@ -23,7 +23,7 @@ function convertDMSToDecimal($latlng) {
             $latlng = str_replace("."," ",$latlng); // remove all periods, not enough chunks left by keeping last one
         }
     }
-    
+
     // Remove unneeded characters
     $latlng = trim($latlng);
     $latlng = str_replace("º"," ",$latlng);
@@ -77,10 +77,16 @@ function convertDMSToDecimal($latlng) {
         }
     }
     if ($valid) {
-        return $decimal_degrees;
+        return preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $decimal_degrees);
     } else {
         return false;
     }
 }
 
-?>
+class DmsToDecimalConverter
+{
+    public function convert($coords)
+    {
+        return convertDMSToDecimal($coords);
+    }
+}
