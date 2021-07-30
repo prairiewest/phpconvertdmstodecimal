@@ -28,7 +28,7 @@ Then you have to do a
 composer require prairiewest/phpconvertdmstodecimal
 ```
 
-Finally, in your code, you juste have to call the library directly, or, if your project
+Finally, in your code, you just have to call the library directly, or, if your project
 uses namespaces, you need to include it in your class:
 
 ```
